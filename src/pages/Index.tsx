@@ -8,30 +8,39 @@ import BookingBanner from "@/components/BookingBanner";
 import Testimonials from "@/components/Testimonials";
 import { Award, Clock, Calendar, MapPin, Shield } from "lucide-react";
 import { Link } from "react-router-dom";
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 
 const vehicles = [
   {
-    id: "mercedes-s-class",
-    name: "Mercedes-Benz S-Class",
-    image: "https://images.unsplash.com/photo-1616455579100-2ceaa4eb2d37?q=80&w=1200",
-    description: "Luxury sedan with premium comfort and advanced technology.",
-    features: ["Premium Comfort", "Advanced Technology", "Spacious Interior"],
-    pricePerDay: 2500,
+    id: "renault-triber",
+    name: "Renault Triber",
+    image: "/lovable-uploads/6080201b-f8c1-4e99-87e9-55a6b812bb5b.png",
+    description: "Spacious and comfortable, perfect for family trips.",
+    features: ["Spacious Interior", "Fuel Efficient", "Comfortable Ride"],
+    pricePerDay: 1800,
   },
   {
-    id: "bmw-7-series",
-    name: "BMW 7 Series",
-    image: "https://images.unsplash.com/photo-1617814076367-b759c7d7e738?q=80&w=1200",
-    description: "Executive sedan with innovative features and elegant design.",
-    features: ["Luxury Interior", "Entertainment System", "Executive Comfort"],
-    pricePerDay: 2700,
+    id: "renault-captur",
+    name: "Renault Captur",
+    image: "/lovable-uploads/189b139c-83f2-4c0a-970d-a98f535517c1.png",
+    description: "Elegant crossover with stylish design and modern features.",
+    features: ["Stylish Design", "Advanced Features", "Premium Comfort"],
+    pricePerDay: 2200,
   },
   {
-    id: "mercedes-v-class",
-    name: "Mercedes-Benz V-Class",
-    image: "https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?q=80&w=1200",
-    description: "Spacious luxury van perfect for group travel and VIP transport.",
-    features: ["Group Travel", "Spacious Interior", "Premium Comfort"],
+    id: "renault-kadjar",
+    name: "Renault Kadjar",
+    image: "/lovable-uploads/33670401-cef1-4e4c-b6ce-81827263b331.png",
+    description: "Sophisticated SUV with elegant styling and premium finish.",
+    features: ["Premium Interior", "Smooth Drive", "Spacious Cabin"],
+    pricePerDay: 2400,
+  },
+  {
+    id: "toyota-fortuner",
+    name: "Toyota Fortuner",
+    image: "/lovable-uploads/7451e43c-2d21-4442-b890-234ed278c300.png",
+    description: "Powerful SUV perfect for both city drives and adventures.",
+    features: ["Powerful Engine", "Rugged Capability", "Luxurious Interior"],
     pricePerDay: 3200,
   },
 ];
@@ -101,7 +110,7 @@ const Index = () => {
           </div>
         </section>
         
-        {/* Featured Vehicles */}
+        {/* Featured Vehicles Carousel */}
         <section className="py-16 bg-luxury-50">
           <div className="container mx-auto px-4">
             <div className="text-center mb-12">
@@ -113,17 +122,46 @@ const Index = () => {
               </p>
             </div>
             
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {vehicles.map((vehicle, index) => (
-                <VehicleCard 
-                  key={vehicle.id}
-                  id={vehicle.id}
-                  name={vehicle.name}
-                  image={vehicle.image}
-                  description={vehicle.description}
-                  features={vehicle.features}
-                  pricePerDay={vehicle.pricePerDay}
-                />
+            <div className="px-8 md:px-16 lg:px-24 max-w-6xl mx-auto">
+              <Carousel className="w-full">
+                <CarouselContent>
+                  {vehicles.map((vehicle) => (
+                    <CarouselItem key={vehicle.id} className="md:basis-1/2 lg:basis-1/3">
+                      <VehicleCard 
+                        id={vehicle.id}
+                        name={vehicle.name}
+                        image={vehicle.image}
+                        description={vehicle.description}
+                        features={vehicle.features}
+                        pricePerDay={vehicle.pricePerDay}
+                      />
+                    </CarouselItem>
+                  ))}
+                </CarouselContent>
+                <CarouselPrevious className="hidden md:flex" />
+                <CarouselNext className="hidden md:flex" />
+              </Carousel>
+            </div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-16">
+              {vehicles.map((vehicle) => (
+                <div key={vehicle.id} className="bg-white rounded-lg shadow-md overflow-hidden transition-transform hover:scale-105 duration-300">
+                  <img 
+                    src={vehicle.image} 
+                    alt={vehicle.name} 
+                    className="w-full h-48 object-cover"
+                  />
+                  <div className="p-4">
+                    <h3 className="font-serif text-xl font-medium text-luxury-800 mb-2">{vehicle.name}</h3>
+                    <p className="text-luxury-600 text-sm mb-4 min-h-[40px]">{vehicle.description}</p>
+                    <Link 
+                      to={`/vehicles/${vehicle.id}`} 
+                      className="block text-center py-2 px-4 bg-luxury-accent text-white rounded hover:bg-luxury-800 transition-colors"
+                    >
+                      View Details
+                    </Link>
+                  </div>
+                </div>
               ))}
             </div>
             
