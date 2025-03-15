@@ -1,29 +1,32 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    --background: 220 33% 98%;
+    --foreground: 222 47% 11%;
 
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card-foreground: 222 47% 11%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover-foreground: 222 47% 11%;
 
-    --primary: 222.2 47.4% 11.2%;
+    --primary: 222 47% 11%;
     --primary-foreground: 210 40% 98%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 45 65% 55%;
+    --secondary-foreground: 210 20% 98%;
 
     --muted: 210 40% 96.1%;
     --muted-foreground: 215.4 16.3% 46.9%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --accent: 45 65% 55%;
+    --accent-foreground: 222 47% 11%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
@@ -35,43 +38,36 @@
     --radius: 0.5rem;
 
     --sidebar-background: 0 0% 98%;
-
     --sidebar-foreground: 240 5.3% 26.1%;
-
     --sidebar-primary: 240 5.9% 10%;
-
     --sidebar-primary-foreground: 0 0% 98%;
-
     --sidebar-accent: 240 4.8% 95.9%;
-
     --sidebar-accent-foreground: 240 5.9% 10%;
-
     --sidebar-border: 220 13% 91%;
-
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
 
   .dark {
-    --background: 222.2 84% 4.9%;
+    --background: 212 30% 10%;
     --foreground: 210 40% 98%;
 
-    --card: 222.2 84% 4.9%;
+    --card: 222.2 47% 11%;
     --card-foreground: 210 40% 98%;
 
-    --popover: 222.2 84% 4.9%;
+    --popover: 222.2 47% 11%;
     --popover-foreground: 210 40% 98%;
 
     --primary: 210 40% 98%;
     --primary-foreground: 222.2 47.4% 11.2%;
 
-    --secondary: 217.2 32.6% 17.5%;
+    --secondary: 45 65% 55%;
     --secondary-foreground: 210 40% 98%;
 
     --muted: 217.2 32.6% 17.5%;
     --muted-foreground: 215 20.2% 65.1%;
 
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
+    --accent: 45 65% 55%;
+    --accent-foreground: 222.2 47.4% 11.2%;
 
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 210 40% 98%;
@@ -79,6 +75,7 @@
     --border: 217.2 32.6% 17.5%;
     --input: 217.2 32.6% 17.5%;
     --ring: 212.7 26.8% 83.9%;
+
     --sidebar-background: 240 5.9% 10%;
     --sidebar-foreground: 240 4.8% 95.9%;
     --sidebar-primary: 224.3 76.3% 48%;
@@ -96,6 +93,135 @@
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-sans;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-serif;
+  }
+}
+
+@layer components {
+  .luxury-container {
+    @apply container mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  .section-padding {
+    @apply py-16 md:py-24;
+  }
+
+  .section-title {
+    @apply text-3xl md:text-4xl lg:text-5xl font-serif font-semibold mb-6 md:mb-8;
+  }
+
+  .section-subtitle {
+    @apply text-lg md:text-xl text-luxury-500 font-light max-w-3xl mb-10;
+  }
+
+  .page-header {
+    @apply relative h-[50vh] md:h-[60vh] flex items-center justify-center;
+  }
+
+  .page-header::before {
+    content: '';
+    @apply absolute inset-0 bg-luxury-800/50 z-10;
+  }
+
+  .page-header-content {
+    @apply relative z-20 text-center text-white;
+  }
+
+  .luxury-transition {
+    @apply transition-all duration-300 ease-in-out;
+  }
+
+  .luxury-btn {
+    @apply inline-flex items-center justify-center rounded-md font-medium luxury-transition ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 h-11 px-4 py-2;
+  }
+
+  .luxury-btn-primary {
+    @apply luxury-btn bg-luxury-accent text-white hover:bg-luxury-accent/90;
+  }
+
+  .luxury-btn-outline {
+    @apply luxury-btn border border-luxury-accent text-luxury-accent hover:bg-luxury-accent/10;
+  }
+
+  .luxury-input {
+    @apply flex h-12 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50;
+  }
+
+  .nav-link {
+    @apply relative text-sm font-medium transition-colors hover:text-luxury-accent;
+  }
+
+  .nav-link-active {
+    @apply text-luxury-accent;
+  }
+
+  .nav-link-active::after {
+    content: '';
+    @apply absolute left-0 -bottom-1 h-0.5 w-full bg-luxury-accent;
+  }
+
+  .vehicle-card {
+    @apply relative overflow-hidden rounded-lg shadow-lg transition-all duration-300 hover:shadow-xl bg-white;
+  }
+
+  .vehicle-card:hover .vehicle-card-image img {
+    @apply scale-105;
+  }
+
+  .vehicle-card-image {
+    @apply relative h-64 w-full overflow-hidden;
+  }
+
+  .vehicle-card-image img {
+    @apply h-full w-full object-cover transition-transform duration-500;
+  }
+
+  .vehicle-card-content {
+    @apply p-6;
+  }
+
+  .vehicle-card-title {
+    @apply text-xl font-serif font-semibold mb-2;
+  }
+
+  .vehicle-card-description {
+    @apply text-sm text-luxury-500 mb-4;
+  }
+
+  .booking-form-container {
+    @apply bg-white shadow-xl rounded-lg p-6 lg:p-8;
+  }
+
+  .form-group {
+    @apply mb-4;
+  }
+
+  .form-label {
+    @apply block text-sm font-medium text-luxury-700 mb-1;
+  }
+
+  .glass-effect {
+    @apply backdrop-blur-sm bg-white/30 dark:bg-luxury-800/30 border border-white/20 dark:border-luxury-700/20;
+  }
+
+  /* Animation classes */
+  .animate-delay-100 {
+    animation-delay: 100ms;
+  }
+  .animate-delay-200 {
+    animation-delay: 200ms;
+  }
+  .animate-delay-300 {
+    animation-delay: 300ms;
+  }
+  .animate-delay-400 {
+    animation-delay: 400ms;
+  }
+  .animate-delay-500 {
+    animation-delay: 500ms;
   }
 }
